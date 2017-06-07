@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Airport"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="492.0" prefWidth="811.0" xmlns="http://javafx.com/javafx/8.0.102"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MVController">
+    <children>
+        <TableView fx:id="flightsTable" layoutX="-101.0" prefHeight="492.0" prefWidth="811.0" AnchorPane.bottomAnchor="0.0"
+                   AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <columns>
+                <TableColumn fx:id="fNameColumn" prefWidth="98.0" text="Flight name"/>
+                <TableColumn fx:id="fNumColumn" prefWidth="98.0" text="Flight numer"/>
+                <TableColumn fx:id="fDirColumn" prefWidth="98.0" text="A/D"/>
+                <TableColumn fx:id="fDestColumn" prefWidth="98.0" text="Destination airport"/>
+                <TableColumn fx:id="fStartDateColumn" prefWidth="98.0" text="Start date"/>
+                <TableColumn fx:id="fStartTimeColumn" prefWidth="98.0" text="Start time"/>
+                <TableColumn fx:id="fGateColumn" prefWidth="98.0" text="Gate"/>
+                <TableColumn fx:id="fTerminalColumn" prefWidth="98.0" text="Terminal"/>
+            </columns>
+        </TableView>
+    </children>
 </AnchorPane>
