@@ -4,21 +4,23 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="492.0" prefWidth="811.0" xmlns="http://javafx.com/javafx/8.0.102"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MVController">
-    <children>
-        <TableView fx:id="flightsTable" layoutX="-101.0" prefHeight="492.0" prefWidth="811.0" AnchorPane.bottomAnchor="0.0"
-                   AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+<?import javafx.scene.layout.GridPane?>
+<GridPane xmlns="http://javafx.com/javafx/8.0.102"
+          xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MVController">
+        <TableView fx:id="flightsTable" GridPane.columnIndex="0"
+                   GridPane.columnSpan="1"
+                   GridPane.hgrow="ALWAYS"
+                   GridPane.vgrow="ALWAYS"
+                   GridPane.rowIndex="0">
             <columns>
-                <TableColumn fx:id="fNameColumn" prefWidth="98.0" text="Flight name"/>
-                <TableColumn fx:id="fNumColumn" prefWidth="98.0" text="Flight numer"/>
-                <TableColumn fx:id="fDirColumn" prefWidth="98.0" text="A/D"/>
-                <TableColumn fx:id="fDestColumn" prefWidth="98.0" text="Destination airport"/>
-                <TableColumn fx:id="fStartDateColumn" prefWidth="98.0" text="Start date"/>
-                <TableColumn fx:id="fStartTimeColumn" prefWidth="98.0" text="Start time"/>
-                <TableColumn fx:id="fGateColumn" prefWidth="98.0" text="Gate"/>
-                <TableColumn fx:id="fTerminalColumn" prefWidth="98.0" text="Terminal"/>
+                <TableColumn fx:id="fNameColumn" text="Flight name"/>
+                <TableColumn fx:id="fNumColumn" text="Flight numer"/>
+                <TableColumn fx:id="fDirColumn" text="A/D"/>
+                <TableColumn fx:id="fDestColumn" text="Destination airport"/>
+                <TableColumn fx:id="fStartDateColumn" text="Start date"/>
+                <TableColumn fx:id="fStartTimeColumn" text="Start time"/>
+                <TableColumn fx:id="fGateColumn" text="Gate"/>
+                <TableColumn fx:id="fTerminalColumn" text="Terminal"/>
             </columns>
         </TableView>
-    </children>
-</AnchorPane>
+</GridPane>

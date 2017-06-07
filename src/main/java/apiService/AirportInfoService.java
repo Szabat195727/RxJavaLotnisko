@@ -44,7 +44,7 @@ public class AirportInfoService {
         try {
             for (int i = 0; i < 5; i++){
                 HttpClient httpClient = HttpClients.createDefault();
-                HttpGet request = new HttpGet(API_URL + "flights?app_id=" + APP_ID + "&app_key=" + APP_KEY + "&page=" + i);
+                HttpGet request = new HttpGet(API_URL + "flights?app_id=" + APP_ID + "&app_key=" + APP_KEY + "&scheduletime=15%3A00&page=" + i);
                 request.addHeader("ResourceVersion", "v3");
 
                 HttpResponse response = httpClient.execute(request);
@@ -57,8 +57,6 @@ public class AirportInfoService {
 
                         getFlightsFromJson(responseJson.get(flightKey));
 
-                        return flightsList;
-
                     } else {
                         System.out.println("Wrong json. Not contains flights key");
                     }
@@ -68,6 +66,8 @@ public class AirportInfoService {
                                     + EntityUtils.toString(response.getEntity()));
                 }
             }
+
+            return flightsList;
 
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Oops something went wrong\nPlease insert your APP_ID and APP_KEY as arguments");
