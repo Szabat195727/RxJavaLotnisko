@@ -1,4 +1,5 @@
 import apiService.AirportInfoService;
+import io.reactivex.Observable;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -6,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import models.Flight;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**

@@ -31,6 +31,7 @@ public class AirportInfoService {
     private final String API_URL = "https://api.schiphol.nl/public-flights/";
     private final ObjectMapper objectMapper = new ObjectMapper();
     private static final LinkedList<Flight> flightsList = new LinkedList<>();
+    public static int page = 0;
 
     public void getFlightsFromJson(JsonNode json) {
         for (JsonNode flight : json) {
@@ -42,29 +43,27 @@ public class AirportInfoService {
     public LinkedList<Flight> getFlightsFromApi() {
         String flightKey = "flights";
         try {
-            for (int i = 0; i < 5; i++){
-                HttpClient httpClient = HttpClients.createDefault();
-                HttpGet request = new HttpGet(API_URL + "flights?app_id=" + APP_ID + "&app_key=" + APP_KEY + "&scheduletime=15%3A00&page=" + i);
-                request.addHeader("ResourceVersion", "v3");
+            HttpClient httpClient = HttpClients.createDefault();
+            HttpGet request = new HttpGet(API_URL + "flights?app_id=" + APP_ID + "&app_key=" + APP_KEY + "&scheduletime=15%3A00&page=" + page);
+            request.addHeader("ResourceVersion", "v3");
 
-                HttpResponse response = httpClient.execute(request);
-                if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-                    String responseBody = EntityUtils.toString(response.getEntity(), "UTF-8");
+            HttpResponse response = httpClient.execute(request);
+            if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+                String responseBody = EntityUtils.toString(response.getEntity(), "UTF-8");
 
-                    JsonNode responseJson = objectMapper.readTree(responseBody);
+                JsonNode responseJson = objectMapper.readTree(responseBody);
 
-                    if (responseJson.has(flightKey) && responseJson.get(flightKey).isArray()) {
+                if (responseJson.has(flightKey) && responseJson.get(flightKey).isArray()) {
 
-                        getFlightsFromJson(responseJson.get(flightKey));
+                    getFlightsFromJson(responseJson.get(flightKey));
 
-                    } else {
-                        System.out.println("Wrong json. Not contains flights key");
-                    }
                 } else {
-                    System.out.println(
-                            "Oops something went wrong\nHttp response code: " + response.getStatusLine().getStatusCode() + "\nHttp response body: "
-                                    + EntityUtils.toString(response.getEntity()));
+                    System.out.println("Wrong json. Not contains flights key");
                 }
+            } else {
+                System.out.println(
+                        "Oops something went wrong\nHttp response code: " + response.getStatusLine().getStatusCode() + "\nHttp response body: "
+                                + EntityUtils.toString(response.getEntity()));
             }
 
             return flightsList;
@@ -79,7 +78,7 @@ public class AirportInfoService {
         return new LinkedList<Flight>();
     }
 
-    public List<Flight> findAll(){
+    public List<Flight> findAll() {
         return getFlightsFromApi();
     }
 
@@ -113,7 +112,7 @@ public class AirportInfoService {
             Calendar c = Calendar.getInstance();
             c.setTime(flightDate);
             int dayOfWeek = c.get(Calendar.DAY_OF_WEEK) - 1;
-            if (dayOfWeek == 0 || dayOfWeek == 6){
+            if (dayOfWeek == 0 || dayOfWeek == 6) {
                 return true;
             } else {
                 return false;

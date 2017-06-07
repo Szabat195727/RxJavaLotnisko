@@ -12,6 +12,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import models.Flight;
 
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 
@@ -71,8 +72,10 @@ public class MVController implements Initializable {
     }
 
     private void reRenderTable(Flight newFlight) {
+        AirportInfoService.page++;
         flightsObservable.add(newFlight);
-        System.out.println("departures updated!");
+        Date now = new Date();
+        System.out.println("New flight" + now);
     }
 
 }
